@@ -1,0 +1,19 @@
+application: donotforgettodo
+version: 1
+runtime: python
+api_version: 1
+
+default_expiration: "4d 5h"
+
+handlers:
+- url: /images
+  static_dir: media/images
+
+- url: /stylesheets
+  static_dir: media/stylesheets
+
+- url: /javascripts
+  static_dir: media/javascripts
+
+- url: /.*
+  script: main.py

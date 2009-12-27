@@ -1,0 +1,19 @@
+<html>
+  <head></head>
+  <body style="background:#dbe5ff url(/images/themes/lolbirdhouse/bg.jpg) no-repeat top left">
+    <div style="padding: 100px; margin-left: 500px; padding-right: 0px">
+      {% for task in tasks %}
+        <h2>{{task.name}}<a href="/delete/{{task.key}}" style="margin-left: 5px"><img src="/images/delete.png"/></a></h2>
+      {% endfor %}
+      
+      <form action="/create" method="POST">
+        <input name="name" style="border: 1px solid #999; font-size: 16px; width: 400px" id="task_name"/>
+        <input type="submit" value="Создать" style="font-size: 16px"/>
+      </form>
+      
+      <script defer="defer">
+        document.getElementById('task_name').focus()
+      </script>
+    </div>
+  </body>
+</html>
