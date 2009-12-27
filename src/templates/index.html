@@ -3,7 +3,7 @@
   <body style="background:#dbe5ff url(/images/themes/lolbirdhouse/bg.jpg) no-repeat top left">
     <div style="padding: 100px; margin-left: 500px; padding-right: 0px">
       {% for task in tasks %}
-        <h2>{{task.name}}<a href="/delete/{{task.key}}" style="margin-left: 5px"><img src="/images/delete.png"/></a></h2>
+        <h2 onmouseover="document.getElementById('delete_link_{{forloop.counter}}').style.display = 'inline'" onmouseout="document.getElementById('delete_link_{{forloop.counter}}').style.display = 'none'">{{task.name}}<a href="/delete/{{task.key}}" style="margin-left: 5px; display: none" id="delete_link_{{forloop.counter}}"><img src="/images/delete.png"/></a></h2>
       {% endfor %}
       
       <form action="/create" method="POST">
