@@ -1,15 +1,20 @@
 <html>
   <head></head>
   <body style="background:#dbe5ff url(/images/themes/lolbirdhouse/bg.jpg) no-repeat top left">
-    <div style="padding: 100px; margin-left: 500px; padding-right: 0px">
-      {% for task in tasks %}
-        <h2 onmouseover="document.getElementById('delete_link_{{forloop.counter}}').style.display = 'inline'" onmouseout="document.getElementById('delete_link_{{forloop.counter}}').style.display = 'none'">{{task.name}}<a href="/delete/{{task.key}}" style="margin-left: 5px; display: none" id="delete_link_{{forloop.counter}}"><img src="/images/delete.png"/></a></h2>
-      {% endfor %}
-      
+    {% if user %}
+        <p>Logged in as {{ user.name }}. <a href="/logout">Logout</a></p>
+    {% else %}
+        <p><a href="/login">Log in with google</a></p>
+    {% endif %}  
+    <div style="padding: 100px; margin-left: 500px; padding-right: 0px">      
       <form action="/create" method="POST">
-        <input name="name" style="border: 1px solid #999; font-size: 16px; width: 400px" id="task_name"/>
+        <input name="name" style="border: 1px solid #999; font-size: 16px; width: 400px; margin-left: 22px" id="task_name"/>
         <input type="submit" value="Создать" style="font-size: 16px"/>
       </form>
+          
+      {% for task in tasks %}
+        <h2 style="cursor: default" onmouseover="document.getElementById('delete_link_{{forloop.counter}}').style.visibility = 'visible'" onmouseout="document.getElementById('delete_link_{{forloop.counter}}').style.visibility = 'hidden'"><a href="/delete/{{task.key}}" style="margin-right: 5px; visibility: hidden" id="delete_link_{{forloop.counter}}"><img src="/images/delete.png"/></a>{{task.name}}</h2>
+      {% endfor %}
       
       <script defer="defer">
         document.getElementById('task_name').focus()
